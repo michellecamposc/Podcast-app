@@ -1,0 +1,8 @@
+@use "../custom" as *;
+@use "utilities/mixins" as mix;
+
+.statistics {
+  h2 {
+    @include mix.headingBorder($secondary, $primary);
+  }
+}
