@@ -19,3 +19,11 @@
     display: inline-block;
   }
 }
+
+.plan-button {
+  @extend .btn-header;
+  border: 1px solid $dark;
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}

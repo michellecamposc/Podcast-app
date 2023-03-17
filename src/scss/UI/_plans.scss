@@ -1,0 +1,46 @@
+@use "../custom" as *;
+@use "utilities/mixins" as mix;
+
+.plans {
+  h2 {
+    @include mix.headingBorder($white, $primary);
+  }
+}
+
+.plan {
+  padding: 16rem 4rem 4rem 4rem;
+  border-bottom: 1px solid #e1e1e1;
+
+  @include media-breakpoint-up(md) {
+    border: none;
+    @include transition(transform 300ms ease);
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &.start {
+    @include mix.bgIcon("/src/img/icono_inicio.svg");
+  }
+
+  &.business {
+    @include mix.bgIcon("/src/img/icono_negocio.svg");
+    @include media-breakpoint-up(md) {
+      margin-top: -5rem;
+      margin-bottom: -5rem;
+      border-radius: 2rem;
+      z-index: 100;
+      padding-top: cal(16rem + 5rem);
+    }
+  }
+
+  &.pro {
+    @include mix.bgIcon("/src/img/icono_pro.svg");
+  }
+}
