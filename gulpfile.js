@@ -2,6 +2,8 @@ const { src, dest, watch, series } = require("gulp");
 
 //To compile css
 const sass = require("gulp-sass")(require("sass"));
+const purgecss = require("gulp-purgecss");
+const rename = require("gulp-rename");
 
 //Images
 const imagemin = require("gulp-imagemin");
@@ -11,6 +13,16 @@ const css = (done) => {
   src("src/scss/app.scss")
     .pipe(sass()) //Compile SASS
     .pipe(dest("build/css")); //Export in a ubication
+
+  done();
+};
+
+const cssBuild = (done) => {
+  //Identify the style page
+  src("build/css/app.css")
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(purgecss({ content: ["index.html"] }))
+    .pipe(dest("build/css"))
 
   done();
 };
@@ -34,3 +46,4 @@ exports.css = css;
 exports.dev = dev;
 exports.images = images;
 exports.default = series(images, css, dev);
+exports.build = series(cssBuild);
